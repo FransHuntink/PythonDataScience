@@ -3,15 +3,17 @@ from random import randrange
 import numpy as numpy
 
 class DataGenerator():
-
+    
+    # Generator methods that
+    # generate meta data
     def GenerateName(self):
-        return "Sten Druifdam"
+        return "Sten Dreundam"
 
     def GenerateEmail(self):
         name = self.GenerateName()
         return name + "@gmail.com"
 
-    def GenerateGender(self):
+    def Gender(self):
         num = random.uniform(0, 1)
         if(num > 0.5):
             return 'male'
@@ -19,12 +21,15 @@ class DataGenerator():
             return 'female' 
 
     def GenerateAge(self):
-        return 12
+        num = random.randint(18, 50)
+        return num
 
     def GeneratePhone(self):
-        return 59483733661737
+        return 59483733637
 
-    # Generate personality indicators
+    # Generator methods that generate
+    # personality indicators based on the
+    # 'big five' personality indicators
     def GenerateOpenness(self):
         num = random.uniform(0, 1)
         return num
@@ -45,78 +50,156 @@ class DataGenerator():
         num = random.uniform(0, 1)
         return num
 
+    # The following preferences indicate personal preference
+    # towards topics that could potentially be relevant for
+    # matching two people in-app
+
+    # Generate a number (0-2) based on a distribution
+    # that indicates gender interested in where:
+    # 0 = heterosexual
+    # 1 = gay
+    # 2 = bi 
+    # 3 = other
+    def Sexuality(self, asString):
+        num = numpy.random.choice(numpy.arange(0, 4), p=[0.7, 0.2, 0.05, 0.05])
+        
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return 'hereosexual' 
+            elif(num == 1):
+                return 'gay'
+            elif(num == 2):
+                return 'bi'
+            else:
+                return 'other'
+
+    # Generate a number (0-2) based on a distribution
+    # that indicates the preference of stance on drugs
+    # 0 = Not into pets
+    # 1 = Neutral
+    # 2 = Very much into pets
+    def PetsPreference(self, asString):
+        num = numpy.random.choice(numpy.arange(0, 3), p=[0.2, 0.5, 0.3])
+
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return "opposed"
+            elif(num == 1):
+                return "neutral"
+            else:
+                return "enthousiast"
 
 
-
-    # Generate personal preferences that
-    # say something about what a user is looking
-    # for in a partner
-
-
-    # Generate sexual preference where:
-    # 0: men
-    # 1: female
-    # 2: bi
-    # TODO: Make this correspond to gender of user, so that
-    # for example being interested in men is less likely 
-    # for a male user than being straight
-    def GenerateSexualPreference(self):
-        num = numpy.random.choice(numpy.arange(0, 3), p=[0.33, 0.33, 0.33])
-        return num
-    
-    # Describes whether a person wants pets or 
-    # not 
-    def GeneratePetsPreference(self):
-        num = numpy.random.choice(numpy.arange(0, 2), p=[0.5, 0.5])
-        return num
-
-    
-    # Generate a number (0-1) based on a distribution
+    # Generate a number (0-2) based on a distribution
     # that indicates the preference of stance on drugs
     # 0 = Opposed to any drug use
-    # 1 = Okay with soft drugs
+    # 1 = Neutral 
     # 2 = Okay with soft and hard drugs
-    def GenerateDrugsPreference(self):
+    def DrugsPreference(self, asString):
         num = numpy.random.choice(numpy.arange(0, 3), p=[0.5, 0.4, 0.1])
-        return num
+
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return "opposed"
+            elif(num == 1):
+                return "neutral"
+            else:
+                return "okay"
     
-    # Generate a number (0-1) based on a distribution
+    # Generate a number (0-4) based on a distribution
     # that indicates the preference of sports
-    # 0 = Soccer
-    # 1 = Hockey
-    # 2 = Volleyball
-    # 3 = Other
-    # 4 = Not into sports
-    def GenerateSportsPreference(self):
-        num = numpy.random.choice(numpy.arange(0, 3), p=[0.4, 0.2, 0.1, 0.1, 0.2])
-        return num
+    # 0 = Not into sports
+    # 1 = Somewhat into spots
+    # 2 = Sport enthousiast
+
+    def SportsPreference(self, asString):
+        num = numpy.random.choice(numpy.arange(0, 3), p=[0.3, 0.4, 0.3])
+
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return "none"
+            elif(num == 1):
+                return "neutral"
+            elif(num == 2):
+                return "enthousiast"
+
+    # Generate a number (0-2) based on a distribution
+    # that indicates the preference of physique
+    # 0 = Does not work out
+    # 1 = Neutral (1-2x per week)
+    # 2 = Frequently works out ( > 2x per week)
+    def WorkoutPreference(self, asString):
+        num = numpy.random.choice(numpy.arange(0, 3), p=[0.4, 0.2, 0.4])
+
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return "none"
+            elif(num == 1):
+                return "occasionally"
+            elif(num == 2):
+                return "enthousiast"
     
+    # Generate a number (0-2) based on a distribution
+    # that indicates the importance of......TODO
+    # def EnvironmentImportance(self, asString):
+    # num = numpy.random.choice(numpy.arange(0, 3), p=[0.5, 0.3, 0.2])
+    # return num
+
+    # Generate a number (0-2) based on a distribution
+    # that indicates whether the person likes traveling where:
+    # 0 = Not a traveler
+    # 1 = Neutral
+    # 2 = Frequent traveler
+    def TravelPreference(self, asString):
+        num = numpy.random.choice(numpy.arange(0, 3), p=[0.3, 0.5, 0.2])
+
+        if(asString == False):
+            return num
+        else:
+            if(num == 0):
+                return "none"
+            elif(num == 1):
+                return "occasionally"
+            elif(num == 2):
+                return "frequent"
+
+
+
     # Generate a number (0-1) based on a distribution
     # that indicates the preference of stance on drugs
-    # 0 = 
-    def GeneratePhysiquePreference(self):
-        num = numpy.random.choice(numpy.arange(0, 2), p=[0.5, 0.5])
-        return num
-    
-    def GeneratEnvironmentalPreference(self):
-        num = numpy.random.choice(numpy.arange(0, 2), p=[0.5, 0.5])
-        return num
+    # 0 = Indoor person
+    # 1 = Neutral/neither indoor nor outdoor
+    # 2 = Outdoor person
+    def GenerateOutdoorsPreference(self, asString):
+       num = numpy.random.choice(numpy.arange(0, 3), p=[0.2, 0.6, 0.2])
+       if(asString == False):
+            return num
+       else:
+            if(num == 0):
+                return "indoor"
+            elif(num == 1):
+                return "neutral"
+            elif(num == 2):
+                return "outdoor"
 
-    def GenerateTravelingPreference(self):
-        num = numpy.random.choice(numpy.arange(0, 2), p=[0.5, 0.5])
-        return num
-    
-    def GenerateOutdoorsPreference(self):
-       num = numpy.random.choice(numpy.arange(0, 2), p=[0.5, 0.5])
-       return num
-    
+
     # generates a number  based on a distribution
     # that indicates the preference on smoking
     # where:
-    # 0 = prefers non-smoker, 
-    # 1 = prefers smoker,
-    # 2 = doesn't care
-    def GenerateSmokingPreference(self, asString):
+    # 0 = does not smoke 
+    # 1 = smokes every now and then
+    # 2 = heavy smoker
+    def SmokingPreference(self, asString):
         num = numpy.random.choice(numpy.arange(0, 3), p=[0.5, 0.3, 0.2])
 
         # Returns either a string or
@@ -127,16 +210,16 @@ class DataGenerator():
             if(num == 0):
                 return "nonsmoker"
             elif(num == 1):
-                return "smoker"
+                return "occasional"
             else:
-                return "either"
+                return "heavy"
 
     # Generate a number (0-1) based on a distribution
     # that indicates the preference of type of
     # relationship where:
     # 0 = closed 
     # 1 = open
-    def GenerateRelationshipPreference(self, asString):
+    def RelationshipPreference(self, asString):
         num = numpy.random.choice(numpy.arange(0, 2), p=[0.9, 0.1])
 
         # Either return a codified value or
@@ -150,3 +233,31 @@ class DataGenerator():
                 return "open"
 
 
+    def GeneratePersonData(self):
+        name = self.GenerateName()
+        gender = self.Gender()
+        sexuality = self.Sexuality(True)
+        phone = self.GeneratePhone()
+        age = self.GenerateAge()
+
+        # Personality portion of the data
+
+        openness = self.GenerateOpenness()
+        conscientiousness = self.GenerateConscientiousness()
+        extraversion = self.GenerateExtraversion()
+        agreeableness = self.GenerateAgreeableness()
+        neuroticism = self.GenerateNeuroticism()
+
+        # Generate preference portion of the data
+
+        pets = self.PetsPreference(True)
+        sports = self.SportsPreference(True)
+        workout = self.WorkoutPreference(True)
+        travel = self.TravelPreference(True)
+        outdoors = self.GenerateOutdoorsPreference(True)
+        smoking = self.SmokingPreference(True)
+        relationship = self.RelationshipPreference(True)
+
+        row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship]
+
+        return row
