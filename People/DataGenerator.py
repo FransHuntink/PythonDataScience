@@ -1,13 +1,14 @@
-import random
 from random import randrange
+#from faker import Faker 
 import numpy as numpy
+import random
 
 class DataGenerator():
     
-
     # Methods that generate meta user data
     def GenerateName(self):
-        return "Sten Dreundam"
+        #fake = Faker()
+        return "Steen Dreundam"
 
     def GenerateEmail(self):
         name = self.GenerateName()
@@ -52,7 +53,7 @@ class DataGenerator():
         num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.1, 0.05])
         return num
 
-    def WorkoutsPerWeek(self, asString):
+    def WorkoutsPerWeek(self):
         num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.1, 0.05])
         return num
 
@@ -165,12 +166,12 @@ class DataGenerator():
 
         # Generate preference portion of the data
 
-        pets = self.PetsPreference(True)
-        sports = self.SportsPreference(True)
-        workout = self.WorkoutPreference(True)
+        pets = self.AmountOfPets()
+        sports = self.PlaysSports(True)
+        workout = self.WorkoutsPerWeek()
         travel = self.TravelPreference(True)
         outdoors = self.OutdoorPreference(True)
-        smoking = self.SmokingPreference(True)
+        smoking = self.SmokePreference(True)
         relationship = self.RelationshipPreference(True)
 
         row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship]
