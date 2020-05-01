@@ -1,13 +1,15 @@
 import random
 from random import randrange
 import numpy as numpy
+from faker import Faker
 
 class DataGenerator():
     
 
     # Methods that generate meta user data
     def GenerateName(self):
-        return "Sten Dreundam"
+        fake = Faker()
+        return fake.name()
 
     def GenerateEmail(self):
         name = self.GenerateName()
@@ -49,13 +51,16 @@ class DataGenerator():
         return num
 
     def AmountOfPets(self):
-        num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.1, 0.05])
+        num = numpy.random.choice(numpy.arange(0, 5), p=[0.3, 0.3, 0.2, 0.1, 0.1])
         return num
 
-    def WorkoutsPerWeek(self, asString):
-        num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.1, 0.05])
+    def WorkoutsPerWeek(self):
+        num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.2])
         return num
 
+    def FacebookFriends(self):
+        num = random.randint(30, 1000)
+        return num
 
     # Methods that generate categorical/string data
     def Sexuality(self, asString):
@@ -65,7 +70,7 @@ class DataGenerator():
             return num
         else:
             if(num == 0):
-                return 'hereosexual' 
+                return 'heterosexual' 
             elif(num == 1):
                 return 'gay'
             elif(num == 2):
@@ -105,7 +110,7 @@ class DataGenerator():
             if(num == 0):
                 return "none"
             elif(num == 1):
-                return "occasionally"
+                return "occasional"
             elif(num == 2):
                 return "frequent"
 
@@ -147,6 +152,9 @@ class DataGenerator():
             else:
                 return "open"
 
+    def PreviousRelationshipNum(self):
+        num = numpy.random.choice(numpy.arange(0, 5), p=[0.1, 0.4, 0.25, 0.2, 0.05 ])
+        return num
 
     def GeneratePersonData(self):
         name = self.GenerateName()
@@ -165,14 +173,16 @@ class DataGenerator():
 
         # Generate preference portion of the data
 
-        pets = self.PetsPreference(True)
-        sports = self.SportsPreference(True)
-        workout = self.WorkoutPreference(True)
+        pets = self.AmountOfPets()
+        sports = self.PlaysSports(True)
+        workout = self.WorkoutsPerWeek()
         travel = self.TravelPreference(True)
         outdoors = self.OutdoorPreference(True)
-        smoking = self.SmokingPreference(True)
+        smoking = self.SmokePreference(True)
         relationship = self.RelationshipPreference(True)
-
-        row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship]
-
+        prevRelationshipNum = self.PreviousRelationshipNum()
+        facebookFriends = self.FacebookFriends()
+        
+        row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship, facebookFriends, prevRelationshipNum]
+        
         return row
