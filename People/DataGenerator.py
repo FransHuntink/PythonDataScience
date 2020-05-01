@@ -157,32 +157,33 @@ class DataGenerator():
         return num
 
     def GeneratePersonData(self):
+
+        # Generate meta
         name = self.GenerateName()
-        gender = self.Gender()
-        sexuality = self.Sexuality(True)
-        phone = self.GeneratePhone()
+
+        # Personality portion of the data (numerical)
         age = self.GenerateAge()
-
-        # Personality portion of the data
-
         openness = self.GenerateOpenness()
         conscientiousness = self.GenerateConscientiousness()
         extraversion = self.GenerateExtraversion()
         agreeableness = self.GenerateAgreeableness()
         neuroticism = self.GenerateNeuroticism()
 
-        # Generate preference portion of the data
-
-        pets = self.AmountOfPets()
+        # Generate categorical portion of the data  (yes/no data)
+        sexuality = self.Sexuality(True)
+        gender = self.Gender()
         sports = self.PlaysSports(True)
-        workout = self.WorkoutsPerWeek()
         travel = self.TravelPreference(True)
         outdoors = self.OutdoorPreference(True)
         smoking = self.SmokePreference(True)
         relationship = self.RelationshipPreference(True)
+
+        # Additional metrics (numerical data)
         prevRelationshipNum = self.PreviousRelationshipNum()
         facebookFriends = self.FacebookFriends()
-        
+        workout = self.WorkoutsPerWeek()
+        pets = self.AmountOfPets()
+
         row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship, facebookFriends, prevRelationshipNum]
         
         return row
