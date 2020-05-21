@@ -55,8 +55,15 @@ class DataGenerator():
         return num
 
     def WorkoutsPerWeek(self):
-        num = numpy.random.choice(numpy.arange(0, 5), p=[0.2, 0.3, 0.2, 0.1, 0.2])
-        return num
+        num = numpy.random.choice(numpy.arange(0, 3), p=[0.3, 0.5, 0.2])
+
+        if(num == 0):
+            return 'Never' 
+        elif(num == 1):
+            return 'Ocassionally'
+        elif(num == 2):
+            return 'Often'
+        
 
 
     # Methods that generate categorical/string data
@@ -159,22 +166,22 @@ class DataGenerator():
 
         # Personality portion of the data
 
-        openness = self.GenerateOpenness()
-        conscientiousness = self.GenerateConscientiousness()
-        extraversion = self.GenerateExtraversion()
-        agreeableness = self.GenerateAgreeableness()
-        neuroticism = self.GenerateNeuroticism()
+        #openness = self.GenerateOpenness()
+       # conscientiousness = self.GenerateConscientiousness()
+       # extraversion = self.GenerateExtraversion()
+       # agreeableness = self.GenerateAgreeableness()
+       # neuroticism = self.GenerateNeuroticism()
 
         # Generate preference portion of the data
 
         pets = self.AmountOfPets()
         sports = self.PlaysSports(True)
-        workout = self.WorkoutsPerWeek()
+        workout = self.TravelPreference(True)
         travel = self.TravelPreference(True)
         outdoors = self.OutdoorPreference(True)
         smoking = self.SmokePreference(True)
         relationship = self.RelationshipPreference(True)
 
-        row = [name, gender, age, sexuality, openness, conscientiousness, extraversion, agreeableness, neuroticism, pets, sports, workout, travel, outdoors, smoking, relationship]
+        row = [name, gender, age, sexuality, pets, sports, workout, travel, outdoors, smoking, relationship]
 
         return row
