@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/franshuntink/miniconda3/envs/myenv/bin/python",
+    "python.pythonPath": "/Users/franshuntink/miniconda3/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }
